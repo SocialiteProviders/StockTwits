@@ -12,7 +12,9 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://api.stocktwits.com/api/2/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase(
+            'https://api.stocktwits.com/api/2/oauth/authorize', $state
+        );
     }
 
     /**
@@ -28,7 +30,9 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get('https://api.stocktwits.com/api/2/account/verify.json?access_token='.$token);
+        $response = $this->getHttpClient()->get(
+            'https://api.stocktwits.com/api/2/account/verify.json?access_token='.$token
+        );
 
         return json_decode($response->getBody(), true)['user'];
     }
@@ -39,11 +43,9 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'       => $user['id'],
-            'nickname' => $user['username'],
-            'name'     => $user['name'],
-            'email'    => null,
-            'avatar'   => $user['avatar_url'],
+            'id' => $user['id'], 'nickname' => $user['username'],
+            'name' => $user['name'], 'email' => null,
+            'avatar' => $user['avatar_url'],
         ]);
     }
 
@@ -52,6 +54,8 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenFields($code)
     {
-        return array_merge(parent::getTokenFields($code), ['grant_type' => 'authorization_code']);
+        return array_merge(parent::getTokenFields($code), [
+            'grant_type' => 'authorization_code',
+        ]);
     }
 }
