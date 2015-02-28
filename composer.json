@@ -1,5 +1,5 @@
 {
-    "name": "socialiteproviders/stockwits",
+    "name": "socialiteproviders/stocktwits",
     "description": "StockTwits OAuth2 Provider for Laravel Socialite",
     "license": "MIT",
     "authors": [{
