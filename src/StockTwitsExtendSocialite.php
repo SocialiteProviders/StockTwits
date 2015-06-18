@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialiteProviders\StockTwits;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;

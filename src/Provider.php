@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialiteProviders\StockTwits;
 
 use Laravel\Socialite\Two\AbstractProvider;
@@ -34,7 +35,7 @@ class Provider extends AbstractProvider implements ProviderInterface
             'https://api.stocktwits.com/api/2/account/verify.json?access_token='.$token
         );
 
-        return json_decode($response->getBody(), true)['user'];
+        return json_decode($response->getBody()->getContents(), true)['user'];
     }
 
     /**
